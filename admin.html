@@ -1,1 +1,106 @@
-Admin Content
+
+<!-- Password Overlay -->
+<div id="passwordOverlay">
+  <div class="password-box">
+    <h2>🔒 No Access</h2>
+    <p>Enter the password to continue.</p>
+
+    <form id="passwordForm">
+      <input
+        type="password"
+        id="sitePassword"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button type="submit">Unlock Website</button>
+      <p id="passwordError"></p>
+    </form>
+  </div>
+</div>
+
+<style>
+  #passwordOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: rgba(5, 10, 25, 0.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .password-box {
+    width: 100%;
+    max-width: 380px;
+    padding: 35px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: #FCD204;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
+  }
+
+  .password-box h2 {
+    margin-top: 0;
+  }
+
+  .password-box input,
+  .password-box button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  .password-box input {
+    background: #1f2937;
+    border: 1px solid #374151;
+    color: white;
+    outline-color: #60a5fa;
+  }
+
+  .password-box button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .password-box button:hover {
+    background: #1d4ed8;
+  }
+
+  #passwordError {
+    color: #f87171;
+    font-size: 14px;
+  }
+</style>
+
+<script>
+  const correctPassword = "CHANGE-THIS-PASSWORD";
+
+  document.getElementById("passwordForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const enteredPassword =
+      document.getElementById("sitePassword").value;
+
+    if (enteredPassword === correctPassword) {
+      document.getElementById("passwordOverlay").remove();
+    } else {
+      document.getElementById("passwordError").textContent =
+        "Incorrect password. Please try again.";
+
+      document.getElementById("sitePassword").value = "";
+    }
+  });
+</script>
