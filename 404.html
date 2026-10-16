@@ -1,1 +1,561 @@
-404 Service Not Found.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hights - The Ultimate Experince</title>
+<link rel="icon" href="https://hights.pages.dev/asset/snow-capped-mountain_1f3d4-fe0f.png">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #0f0f0f;
+    color: white;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* LEFT */
+
+.left {
+    width: 50%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+}
+
+.left img.background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.left-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.55)
+    );
+}
+
+.left-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px;
+    max-width: 650px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+.left h1 {
+    font-size: 52px;
+    line-height: 1.05;
+    margin: 0 0 20px;
+}
+
+.left h1 span {
+    color: #FCD204;
+}
+
+.left p {
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* RIGHT */
+
+.right {
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background: #111;
+}
+
+.panel {
+    width: 100%;
+    max-width: 600px;
+}
+
+.panel-header {
+    margin-bottom: 30px;
+}
+
+.panel-header h2 {
+    font-size: 32px;
+    margin: 0 0 10px;
+}
+
+.panel-header p {
+    margin: 0;
+    color: rgba(255,255,255,0.5);
+}
+
+
+/* INPUT */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,0.8);
+}
+
+input {
+    width: 100%;
+    background: #1c1c1c;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: white;
+    padding: 14px 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #FCD204;
+    box-shadow: 0 0 0 3px rgba(253,112,0,0.12);
+}
+
+
+/* READ ONLY JSON */
+
+.json-box {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+
+    background: #0b0b0b;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+
+    padding: 16px;
+
+    color: #FCD204;
+
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.55;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    user-select: text;
+}
+
+
+/* SEND BUTTON */
+
+.send-button {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+
+    padding: 15px;
+
+    background: #FCD204;
+    color: black;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.send-button:hover {
+    background: #ff8426;
+    transform: translateY(-1px);
+}
+
+.send-button:active {
+    transform: translateY(0);
+}
+
+
+/* STATUS */
+
+.status {
+    margin-top: 15px;
+    padding: 13px 15px;
+    border-radius: 10px;
+
+    display: none;
+
+    font-size: 14px;
+}
+
+.status.success {
+    display: block;
+
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.25);
+
+    color: #86efac;
+}
+
+.status.error {
+    display: block;
+
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.25);
+
+    color: #fca5a5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+    }
+
+    .left {
+        min-height: 450px;
+    }
+
+    .right {
+        min-height: auto;
+        padding: 35px 20px;
+    }
+
+    .left-content {
+        padding: 35px;
+    }
+
+    .left h1 {
+        font-size: 40px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- LEFT SIDE -->
+
+    <section class="left">
+
+        <img
+            class="background"
+            src="https://hights.pages.dev/asset/Hights.png"
+            alt="The Biggest Parade in ERLC"
+        >
+
+        <div class="left-overlay"></div>
+
+    </section>
+
+
+    <!-- RIGHT SIDE -->
+
+    <section class="right">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h2>404 Error</h2>
+
+                <p>
+                    The web server could not find the page you requested.
+                </p>
+
+            </div>
+
+
+            <!-- VIEW ONLY JSON -->
+
+            <div class="form-group">
+
+                <label>
+                    Try:
+                </label>
+
+                <div class="json-box">Reload the Page | Check the spelling of the URL | Clear cache // This could be a problem on our end!</div>
+
+            </div>
+
+
+            <!-- SEND -->
+
+            <a href="https://hights.pages.dev/" class="send-button">Go Home</a>
+
+
+            <div id="status" class="status"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+async function sendWebhook() {
+
+    const webhookInput =
+        document.getElementById("webhook");
+
+    const status =
+        document.getElementById("status");
+
+    const webhook =
+        webhookInput.value.trim();
+
+
+    /* Reset status */
+
+    status.className = "status";
+    status.textContent = "";
+
+
+    /* Check webhook */
+
+    if (!webhook) {
+
+        status.className = "status error";
+
+        status.textContent =
+            "Please enter a Discord webhook URL.";
+
+        return;
+    }
+
+
+    /* Make sure it is a Discord webhook */
+
+    if (
+        !webhook.startsWith("https://discord.com/api/webhooks/") &&
+        !webhook.startsWith("https://discordapp.com/api/webhooks/")
+    ) {
+
+        status.className = "status error";
+
+        status.textContent =
+            "Please enter a valid Discord webhook URL.";
+
+        return;
+    }
+
+
+    /* Fixed Components V2 payload */
+
+    const payload = {
+
+        flags: 32768,
+
+        components: [
+
+            {
+                type: 17,
+
+                components: [
+
+                    {
+                        type: 12,
+
+                        items: [
+
+                            {
+                                media: {
+                                    url:
+                                    "https://erlc.pages.dev/images/TheBIggestParadeinERLC.png"
+                                }
+                            }
+
+                        ]
+                    },
+
+
+                    {
+                        type: 10,
+
+                        content:
+                        "# 🎉 | The Biggest Parade in ERLC!\n"
+                    },
+
+
+                    {
+                        type: 14
+                    },
+
+
+                    {
+                        type: 10,
+
+                        content:
+                        "> We invite you to join us & ERLC Hub with the biggest parade in the brand new map!\n\n" +
+
+                        "`📋` - Sign up for 16 spots in the parade!\n" +
+                        "`👀` - Watch over 16 vehicles drive!\n" +
+                        "`👋` - Welcome the new map!\n" +
+                        "`🚀` - Experince a blast!"
+                    },
+
+
+                    {
+                        type: 14
+                    },
+
+
+                    {
+                        type: 10,
+
+                        content:
+                        "**Offical Event Time: <t:1791612000:R>**\n" +
+
+                        "[View More](<https://erlc.pages.dev/event/Big-Parade>)\n" +
+
+                        "[Join ERLC Hub's Discord](<https://discord.gg/Q8X9F7fpvB>)\n" +
+
+                        "-# Event Website Link: https://erlc.pages.dev/event/Big-Parade. This server gets special perks to advertise this. Authorised by Server Admins."
+                    }
+
+                ],
+
+                accent_color: 16609280
+            }
+
+        ]
+
+    };
+
+
+    try {
+
+        /*
+            IMPORTANT:
+            Components V2 webhook messages need
+            with_components=true
+        */
+
+        const separator =
+            webhook.includes("?")
+                ? "&"
+                : "?";
+
+        const webhookURL =
+            webhook +
+            separator +
+            "with_components=true";
+
+
+        const response =
+            await fetch(webhookURL, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(payload)
+
+            });
+
+
+        if (response.ok) {
+
+            status.className =
+                "status success";
+
+            status.textContent =
+                "✓ Successfully sent to Discord!";
+
+            webhookInput.value = "";
+
+        } else {
+
+            let errorText = "";
+
+            try {
+                errorText = await response.text();
+            } catch {
+                errorText = "";
+            }
+
+
+            status.className =
+                "status error";
+
+            status.textContent =
+                "Discord rejected the webhook. Status: " +
+                response.status +
+                (errorText
+                    ? " — " + errorText
+                    : "");
+
+        }
+
+    } catch (error) {
+
+        status.className =
+            "status error";
+
+        status.textContent =
+            "Could not connect to Discord. Check your webhook and try again.";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+
